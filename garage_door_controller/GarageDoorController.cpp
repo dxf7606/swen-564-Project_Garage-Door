@@ -22,25 +22,25 @@ void GarageDoorController::processInput(char input) {
 	switch (input) 
 	{
 		case 'm':
-			this->setState(curState->overcurrentInterrupt());
+			this->setState(curState.overcurrentInterrupt());
 			break;
 		case 'i':
-			this->setState(curState->infraredInterrupt());
+			this->setState(curState.infraredInterrupt());
 			break;
 		case 'r':
-			this->setState(curState->buttonInterrupt());
+			this->setState(curState.buttonInterrupt());
 			break;
 		case 'o':
-			this->setState(curState->doorOpenInterrupt());
+			this->setState(curState.doorOpenInterrupt());
 			break;
 		case 'c':
-			this->setState(curState->doorClosedInterrupt());
+			this->setState(curState.doorClosedInterrupt());
 			break;
 	}
 }
 
 void GarageDoorController::setState(State newState) {
-	if (this->curState != newState) {
+	if (typeid(this->curState).name() != typeid(newState).name()) {
 		this->lastState = this->curState;
 		this->curState = newState;
 	}
