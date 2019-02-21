@@ -27,4 +27,3 @@ OpeningState ClosedState::buttonPush() {
 //	gdControllerParam = *this->gdController;
 	return new OpeningState(this->motor, this->gdController);
 }
-
