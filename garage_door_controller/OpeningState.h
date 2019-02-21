@@ -7,13 +7,14 @@
 
 #include "State.h"
 #include "Motor.h"
+#include "GarageDoorController.h"
  
 #ifndef OPENINGSTATE_H_
 #define OPENINGSTATE_H_
 
 class OpeningState: public State {
 public:
-	OpeningState();
+	OpeningState(Motor motor, GarageDoorController gdController);
 	virtual ~OpeningState();
 };
 

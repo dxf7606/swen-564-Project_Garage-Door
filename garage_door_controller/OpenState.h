@@ -8,10 +8,12 @@
 #ifndef OPENSTATE_H_
 #define OPENSTATE_H_
 #include "State.h"
+#include "Motor.h"
+#include "GarageDoorController.h"
 
 class OpenState: public State {
 public:
-	OpenState();
+	OpenState(Motor motor, GarageDoorController gdController);
 	virtual ~OpenState();
 };
 

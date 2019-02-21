@@ -7,11 +7,10 @@
 
 #include "OpeningState.h"
 #include "State.h"
+#include "GarageDoorController.h"
 
-OpeningState::OpeningState() {
-	// TODO Auto-generated constructor stub
-
-}
+OpeningState::OpeningState(Motor motor, GarageDoorController gdController):
+	State(motor, gdController){}
 
 OpeningState::~OpeningState() {
 	// TODO Auto-generated destructor stub
