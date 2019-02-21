@@ -5,6 +5,8 @@
  *      Author: mll8657
  */
 
+#include "State.h"
+
 #ifndef GARAGEDOORCONTROLLER_H_
 #define GARAGEDOORCONTROLLER_H_
 
@@ -13,10 +15,12 @@ public:
 	void processInput(char input);
 	GarageDoorController();
 	virtual ~GarageDoorController();
-	setInfraredActive(bool active);
-	setOvercurrentActive(bool active);
+	void setInfraredActive(bool active);
+	bool getInfraredActive();
+	bool getOvercurrentActive();
+	void setOvercurrentActive(bool active);
 private:
 	void setState(State newState);
-}
+};
 
 #endif /* GARAGEDOORCONTROLLER_H_ */
