@@ -11,7 +11,7 @@
  */
 
 #include "Motor.h"
-#include "MotorController.h"
+#include "InputController.h"
 #include <cstdlib>
 #include <stdlib.h>
 #include <chrono>
@@ -24,7 +24,7 @@ Motor::Motor() {
     this->motorUp = false;
     this->motorDown = false;
     this->refreshRate = std::chrono::milliseconds(10);
-    this->controller = new MotorController();
+    this->controller = new InputController();
 }
 
 Motor::~Motor() {
