@@ -13,6 +13,10 @@ public:
 	void processInput(char input);
 	GarageDoorController();
 	virtual ~GarageDoorController();
-};
+	setInfraredActive(bool active);
+	setOvercurrentActive(bool active);
+private:
+	void setState(State newState);
+}
 
 #endif /* GARAGEDOORCONTROLLER_H_ */
