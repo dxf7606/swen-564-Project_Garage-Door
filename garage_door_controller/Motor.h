@@ -6,6 +6,7 @@
  */
 
 #include <chrono>
+#include "InputController.h"
 #ifndef MOTOR_H_
 #define MOTOR_H_
 
@@ -16,6 +17,7 @@ private:
     int position;
     void *motorThread(void *arg);
     std::chrono::milliseconds refreshRate;
+    InputController *controller;
 public:
     void setMotorUp(bool setting);
     void setMotorDown(bool setting);

@@ -11,6 +11,7 @@
  */
 
 #include "Motor.h"
+#include "InputController.h"
 #include <cstdlib>
 #include <stdlib.h>
 #include <chrono>
@@ -23,6 +24,7 @@ Motor::Motor() {
     this->motorUp = false;
     this->motorDown = false;
     this->refreshRate = std::chrono::milliseconds(10);
+    this->controller = new InputController();
 }
 
 Motor::~Motor() {
@@ -31,18 +33,25 @@ Motor::~Motor() {
 
 void *Motor::motorThread(void *arg) {
     while (true) {
-        if (position <= 0 and motorDown) {
+        if (motorDown and motorUp) {
+            // never supposed to happen, stop the thread (error state).
+            break;
+        }
+        else if (position <= 0 and motorDown) {
             // send fully closed input. Turn off motorDown
+            controller->sendInput('c');
             motorDown = false;
         }
-        
-        if (position >= 100 and motorUp) {
+        else if (position >= 100 and motorUp) {
             // send fully open input. Turn off motorUp
+            controller->sendInput('o');
             motorUp = false;
         }
-        
-        if (motorDown and motorUp) {
-            break;
+        else if (motorDown) {
+            position -= 1;
+        }
+        else if (motorUp) {
+            position += 1;
         }
         
         std::this_thread::sleep_for(this->refreshRate);
