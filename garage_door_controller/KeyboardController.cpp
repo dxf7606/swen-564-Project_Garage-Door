@@ -6,6 +6,9 @@
  */
 
 #include "KeyboardController.h"
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 KeyboardController::KeyboardController() {
 	// TODO Auto-generated constructor stub
@@ -14,4 +17,12 @@ KeyboardController::KeyboardController() {
 
 KeyboardController::~KeyboardController() {
 	// TODO Auto-generated destructor stub
+}
+
+int main() {
+	
+}
+
+char sendInput() {
+	
 }
