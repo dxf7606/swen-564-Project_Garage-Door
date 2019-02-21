@@ -10,7 +10,7 @@
 
 class GarageDoorController {
 public:
-	void processInput();
+	void processInput(char input);
 	GarageDoorController();
 	virtual ~GarageDoorController();
 };

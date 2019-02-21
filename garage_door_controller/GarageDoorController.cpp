@@ -7,7 +7,7 @@
 
 #include "GarageDoorController.h"
 
-void GarageDoorController::processInput(int input) {
+void GarageDoorController::processInput(char input) {
 
 }
 

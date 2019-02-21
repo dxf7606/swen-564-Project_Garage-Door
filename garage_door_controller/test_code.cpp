@@ -6,8 +6,8 @@
 #define N 5
 
 void *worker_thread(void *arg) {
-	printf("This is worker_thread #%ld\n", (long)arg);
-	pthread_exit(NULL);
+	//printf("This is worker_thread #%ld\n", (long)arg);
+	//pthread_exit(NULL);
 }
 
 int main(int argc, char *argv[]) {
