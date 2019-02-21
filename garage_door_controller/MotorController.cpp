@@ -5,6 +5,7 @@
  *      Author: mll8657
  */
 
+#include "InputController.h"
 #include "MotorController.h"
 
 MotorController::MotorController() {
@@ -14,4 +15,8 @@ MotorController::MotorController() {
 
 MotorController::~MotorController() {
 	// TODO Auto-generated destructor stub
+}
+
+void MotorController::sendInput(char input) {
+    // send to garageDoorController somehow
 }

@@ -15,3 +15,7 @@ InputController::InputController() {
 InputController::~InputController() {
 	// TODO Auto-generated destructor stub
 }
+
+void InputController::sendInput(char input) {
+    // send this to garageDoorController somehow
+}
