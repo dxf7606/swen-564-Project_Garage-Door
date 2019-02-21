@@ -6,6 +6,9 @@
  */
 
 #include "State.h"
+#include "KeyboardController.h"
+#include "MotorController.h"
+#include "InputController.h"
 
 #ifndef GARAGEDOORCONTROLLER_H_
 #define GARAGEDOORCONTROLLER_H_
@@ -20,6 +23,12 @@ public:
 	bool getOvercurrentActive();
 	void setOvercurrentActive(bool active);
 private:
+	bool infraredActive;
+	bool overcurrentActive;
+	State curState;
+	State lastState;
+	KeyboardController keyboardController;
+	MotorController motorController;
 	void setState(State newState);
 };
 

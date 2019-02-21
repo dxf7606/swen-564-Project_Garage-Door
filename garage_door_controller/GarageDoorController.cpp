@@ -18,13 +18,6 @@
 #include "ClosedState.h"
 #include "InputInterruptState.h"
 
-#define lastState State
-#define curState State
-#define keyboardController KeyboardController
-#define motorController MotorController
-#define infraredActive false
-#define overcurrentActive false
-
 void GarageDoorController::processInput(char input) {
 	switch (input) 
 	{
@@ -71,8 +64,12 @@ bool GarageDoorController::getOvercurrentActive() {
 }
 
 GarageDoorController::GarageDoorController() {
-	// TODO Auto-generated constructor stub
-
+	this->lastState = new ClosingState();
+	this->curState = new ClosedState();
+	this->keyboardController = new KeyboardController();
+	this->motorController = new MotorController();
+	this->infraredActive = false;
+	this->overcurrentActive = false;
 }
 
 GarageDoorController::~GarageDoorController() {
