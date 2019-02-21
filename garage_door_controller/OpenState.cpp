@@ -6,6 +6,7 @@
  */
 
 #include "OpenState.h"
+#include "Motor.h"
 
 OpenState::OpenState() {
 	// TODO Auto-generated constructor stub

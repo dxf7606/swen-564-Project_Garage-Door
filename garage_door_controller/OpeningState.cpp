@@ -6,6 +6,7 @@
  */
 
 #include "OpeningState.h"
+#include "State.h"
 
 OpeningState::OpeningState() {
 	// TODO Auto-generated constructor stub
@@ -15,3 +16,5 @@ OpeningState::OpeningState() {
 OpeningState::~OpeningState() {
 	// TODO Auto-generated destructor stub
 }
+
+

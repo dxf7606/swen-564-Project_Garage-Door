@@ -7,7 +7,7 @@
 
 #include "State.h"
 #include "KeyboardController.h"
-#include "MotorController.h"
+#include "Motor.h"
 #include "InputController.h"
 
 #ifndef GARAGEDOORCONTROLLER_H_
@@ -28,7 +28,7 @@ private:
 	State curState;
 	State lastState;
 	KeyboardController keyboardController;
-	MotorController motorController;
+	Motor motor;
 	void setState(State newState);
 };
 
