@@ -9,7 +9,7 @@ void *worker_thread(void *arg) {
 	//printf("This is worker_thread #%ld\n", (long)arg);
 	//pthread_exit(NULL);
 }
-
+/*
 int main(int argc, char *argv[]) {
 	printf("Hellow World!");
 	std::cout << "Welcome to the QNX Momentics IDE" << std::endl;
@@ -28,3 +28,4 @@ int main(int argc, char *argv[]) {
 
 	return EXIT_SUCCESS;
 }
+*/

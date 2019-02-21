@@ -13,6 +13,8 @@
 #include "Motor.h"
 #include <cstdlib>
 #include <stdlib.h>
+#include <chrono>
+#include <thread>
 
 
 Motor::Motor() {
@@ -20,7 +22,7 @@ Motor::Motor() {
     this->position = 0;
     this->motorUp = false;
     this->motorDown = false;
-    this->refreshRate = 10;
+    this->refreshRate = std::chrono::milliseconds(10);
 }
 
 Motor::~Motor() {
@@ -29,7 +31,21 @@ Motor::~Motor() {
 
 void *Motor::motorThread(void *arg) {
     while (true) {
-        //std::this_thread::sleep_for(this->refreshRate);
+        if (position <= 0 and motorDown) {
+            // send fully closed input. Turn off motorDown
+            motorDown = false;
+        }
+        
+        if (position >= 100 and motorUp) {
+            // send fully open input. Turn off motorUp
+            motorUp = false;
+        }
+        
+        if (motorDown and motorUp) {
+            break;
+        }
+        
+        std::this_thread::sleep_for(this->refreshRate);
     }
 }
 

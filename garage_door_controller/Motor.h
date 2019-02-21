@@ -5,6 +5,7 @@
  *      Author: mll8657
  */
 
+#include <chrono>
 #ifndef MOTOR_H_
 #define MOTOR_H_
 
@@ -14,7 +15,7 @@ private:
     bool motorDown;
     int position;
     void *motorThread(void *arg);
-    int refreshRate;
+    std::chrono::milliseconds refreshRate;
 public:
     void setMotorUp(bool setting);
     void setMotorDown(bool setting);
