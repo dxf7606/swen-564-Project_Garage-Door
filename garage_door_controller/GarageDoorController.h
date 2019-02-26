@@ -25,8 +25,8 @@ public:
 private:
 	bool infraredActive;
 	bool overcurrentActive;
-	KeyboardController keyboardController;
-	Motor motor;
+	KeyboardController *keyboardController;
+	Motor *motor;
 };
 
 #endif /* GARAGEDOORCONTROLLER_H_ */

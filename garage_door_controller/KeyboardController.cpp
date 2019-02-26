@@ -6,23 +6,28 @@
  */
 
 #include "KeyboardController.h"
+#include "InputController.h"
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <iostream>
 
-KeyboardController::KeyboardController() {
-	// TODO Auto-generated constructor stub
+void *keyboardListener(void *arg) {
+    char input;
+    while (true) {
+        std::cin>>input;
+        std::cout<<input;
+    }
+}
 
+KeyboardController::KeyboardController(InputController controller) {
+    this->controller = controller;
+    pthread_t keyboardThread;
+    pthread_create(&keyboardThread, NULL, &keyboardListener, NULL);
+    pthread_join(keyboardThread, 0);
 }
 
 KeyboardController::~KeyboardController() {
 	// TODO Auto-generated destructor stub
 }
 
-int main() {
-	
-}
-
-char sendInput() {
-	
-}

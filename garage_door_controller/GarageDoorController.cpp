@@ -64,14 +64,21 @@ bool GarageDoorController::getOvercurrentActive() {
 }
 
 GarageDoorController::GarageDoorController() {
+	//this->lastState = new ClosingState();
+	//this->curState = new ClosedState();
+    InputController *c = new InputController();
+    this->motor = new Motor(*c);
+    this->keyboardController = new KeyboardController(*c);
 	this->lastState = new ClosingState();
 	this->curState = new ClosedState();
-	this->keyboardController = new KeyboardController();
-	this->motor = new Motor();
 	this->infraredActive = false;
 	this->overcurrentActive = false;
 }
 
 GarageDoorController::~GarageDoorController() {
 	// TODO Auto-generated destructor stub
+}
+
+int main() {
+    GarageDoorController *g = new GarageDoorController();
 }
