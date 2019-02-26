@@ -21,7 +21,7 @@ void State::buttonInterrupt() {
 			buttonInterrupt_Open();
 			break;
 		case ClosingState:
-			buttonInterrupt_Closing_Closing();
+			buttonInterrupt_Opening_Closing();
 			break;
 		case InputInterruptState:
 			switch(this->lastState) {
@@ -63,7 +63,16 @@ void State::buttonInterrupt_Open() {
 }
 
 void State::infraredInterrupt() {
-//	return this;
+	if (this->curState == ClosingState) {
+		this->gdController.setInfraredActive(false);
+		this->gdController.setOvercurrentActive(false);
+		this->motor.setMotorDown(false);
+		this->motor.setMotorUp(true);
+		this->lastState = this->curState;
+		this->curState = OpeningState;
+	} else {
+		return;
+	}
 }
 
 void State::overcurrentInterrupt() {
