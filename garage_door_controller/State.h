@@ -33,7 +33,9 @@ public:
 	GarageDoorController gdController;
 private:
 	void buttonInterrupt_Closed();
-//	void buttonInterrupt_Opening();
+	void buttonInterrupt_Opening_Closing();
+	void buttonInterrupt_Open();
+	void buttonInterrupt_InputInterrupt();
 };
 
 #endif /* STATE_H_ */

@@ -15,39 +15,21 @@ void State::buttonInterrupt() {
 			buttonInterrupt_Closed();
 			break;
 		case OpeningState:
-			this->gdController.setInfraredActive(false);
-			this->gdController.setOvercurrentActive(false);
-			this->motor.setMotorUp(false);
-			this->motor.setMotorDown(false);
-			this->lastState = this->curState;
-			this->curState = InputInterruptState;
+			buttonInterrupt_Opening_Closing();
 			break;
 		case OpenState:
-			this->gdController.setInfraredActive(true);
-			this->gdController.setOvercurrentActive(true);
-			this->motor.setMotorUp(false);
-			this->motor.setMotorDown(true);
-			this->lastState = this->curState;
-			this->curState = ClosingState;
+			buttonInterrupt_Open();
+			break;
+		case ClosingState:
+			buttonInterrupt_Closing_Closing();
 			break;
 		case InputInterruptState:
 			switch(this->lastState) {
 				case ClosingState:
-//					this->gdController.setInfraredActive(false);
-//					this->gdController.setOvercurrentActive(true);
-//					this->motor.setMotorDown(false);
-//					this->motor.setMotorUp(true);
-//					this->lastState = this->curState;
-//					this->curState = OpeningState;
 					buttonInterrupt_Closed();
 					break;
 				case OpeningState:
-					this->gdController.setInfraredActive(true);
-					this->gdController.setOvercurrentActive(true);
-					this->motor.setMotorUp(false);
-					this->motor.setMotorDown(true);
-					this->lastState = this->curState;
-					this->curState = ClosingState;
+					buttonInterrupt_Open();
 					break;
 			}
 			break;
@@ -62,14 +44,23 @@ void State::buttonInterrupt_Closed() {
 	this->curState = OpeningState;
 }
 
-//void State::buttonInterrupt_Opening() {
-//	this->gdController.setInfraredActive(false);
-//	this->gdController.setOvercurrentActive(false);
-//	this->motor.setMotorUp(false);
-//	this->motor.setMotorDown(false);
-//	this->lastState = this->curState;
-//	this->curState = InputInterruptState;
-//}
+void State::buttonInterrupt_Opening_Closing() {
+	this->gdController.setInfraredActive(false);
+	this->gdController.setOvercurrentActive(false);
+	this->motor.setMotorUp(false);
+	this->motor.setMotorDown(false);
+	this->lastState = this->curState;
+	this->curState = InputInterruptState;
+}
+
+void State::buttonInterrupt_Open() {
+	this->gdController.setInfraredActive(true);
+	this->gdController.setOvercurrentActive(true);
+	this->motor.setMotorUp(false);
+	this->motor.setMotorDown(true);
+	this->lastState = this->curState;
+	this->curState = ClosingState;
+}
 
 void State::infraredInterrupt() {
 //	return this;
