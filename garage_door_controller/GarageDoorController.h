@@ -7,7 +7,7 @@
 
 #include "State.h"
 #include "KeyboardController.h"
-#include "MotorController.h"
+#include "Motor.h"
 #include "InputController.h"
 
 #ifndef GARAGEDOORCONTROLLER_H_
@@ -27,8 +27,8 @@ private:
 	bool overcurrentActive;
 	State curState;
 	State lastState;
-	KeyboardController keyboardController;
-	MotorController motorController;
+	KeyboardController *keyboardController;
+	Motor *motor;
 	void setState(State newState);
 };
 

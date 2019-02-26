@@ -10,7 +10,7 @@
 #include "GarageDoorController.h"
 #include "InputController.h"
 #include "KeyboardController.h"
-#include "MotorController.h"
+#include "Motor.h"
 #include "State.h"
 #include "OpeningState.h"
 #include "OpenState.h"
@@ -64,14 +64,19 @@ bool GarageDoorController::getOvercurrentActive() {
 }
 
 GarageDoorController::GarageDoorController() {
-	this->lastState = new ClosingState();
-	this->curState = new ClosedState();
-	this->keyboardController = new KeyboardController();
-	this->motorController = new MotorController();
+	//this->lastState = new ClosingState();
+	//this->curState = new ClosedState();
+    InputController *c = new InputController();
+    this->motor = new Motor(*c);
+    this->keyboardController = new KeyboardController(*c);
 	this->infraredActive = false;
 	this->overcurrentActive = false;
 }
 
 GarageDoorController::~GarageDoorController() {
 	// TODO Auto-generated destructor stub
+}
+
+int main() {
+    GarageDoorController *g = new GarageDoorController();
 }

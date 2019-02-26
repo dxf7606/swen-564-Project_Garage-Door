@@ -18,13 +18,13 @@
 #include <thread>
 
 
-Motor::Motor() {
+Motor::Motor(InputController inputController) {
     // create motor
     this->position = 0;
     this->motorUp = false;
     this->motorDown = false;
     this->refreshRate = std::chrono::milliseconds(10);
-    this->controller = new InputController();
+    this->controller = inputController;
 }
 
 Motor::~Motor() {
@@ -39,12 +39,12 @@ void *Motor::motorThread(void *arg) {
         }
         else if (position <= 0 and motorDown) {
             // send fully closed input. Turn off motorDown
-            controller->sendInput('c');
+            controller.sendInput('c');
             motorDown = false;
         }
         else if (position >= 100 and motorUp) {
             // send fully open input. Turn off motorUp
-            controller->sendInput('o');
+            controller.sendInput('o');
             motorUp = false;
         }
         else if (motorDown) {
