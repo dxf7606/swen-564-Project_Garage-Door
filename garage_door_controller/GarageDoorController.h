@@ -25,11 +25,8 @@ public:
 private:
 	bool infraredActive;
 	bool overcurrentActive;
-	State curState;
-	State lastState;
 	KeyboardController keyboardController;
 	Motor motor;
-	void setState(State newState);
 };
 
 #endif /* GARAGEDOORCONTROLLER_H_ */

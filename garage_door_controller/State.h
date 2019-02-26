@@ -10,17 +10,30 @@
 #include "Motor.h"
 #include "GarageDoorController.h"
 
+enum Concrete_State {
+	ClosedState,
+	OpeningState,
+	OpenState,
+	ClosingState,
+	InputInterruptState
+};
+
 class State {
 public:
-	virtual State buttonInterrupt();
-	virtual State infraredInterrupt();
-	virtual State overcurrentInterrupt();
-	virtual State doorOpenInterrupt();
-	virtual State doorClosedInterrupt();
+	void buttonInterrupt();
+	void infraredInterrupt();
+	void overcurrentInterrupt();
+	void doorOpenInterrupt();
+	void doorClosedInterrupt();
 	State(Motor eMotor, GarageDoorController egdController);
-	virtual ~State();
+	~State();
+	Concrete_State curState;
+	Concrete_State lastState;
 	Motor motor;
 	GarageDoorController gdController;
+private:
+	void buttonInterrupt_Closed();
+//	void buttonInterrupt_Opening();
 };
 
 #endif /* STATE_H_ */
