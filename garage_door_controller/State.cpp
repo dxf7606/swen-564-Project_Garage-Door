@@ -6,35 +6,35 @@
  */
 
 #include "State.h"
+#include "Motor.h"
+#include "GarageDoorController.h"
 
 State State::buttonInterrupt() {
-	// Do nothing
+	return this;
 
 }
 
-State State::infraredInterrupt() {
-	// Do nothing
-
+State infraredInterrupt() {
+	return this;
 }
 
-State State::overcurrentInterrupt() {
-	// Do nothing
-
+State overcurrentInterrupt() {
+	return this;
 }
 
 State State::doorOpenInterrupt() {
-	// Do nothing
+	return this;
 
 }
 
 State State::doorClosedInterrupt() {
-	// Do nothing
+	return this;
 
 }
 
-State::State() {
-	// TODO Auto-generated constructor stub
-
+State::State(Motor eMotor, GarageDoorController egdController) {
+	this->motor = eMotor;
+	this->gdController = egdController;
 }
 
 State::~State() {

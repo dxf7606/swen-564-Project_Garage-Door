@@ -7,6 +7,8 @@
 
 #ifndef STATE_H_
 #define STATE_H_
+#include "Motor.h"
+#include "GarageDoorController.h"
 
 class State {
 public:
@@ -15,8 +17,10 @@ public:
 	virtual State overcurrentInterrupt();
 	virtual State doorOpenInterrupt();
 	virtual State doorClosedInterrupt();
-	State();
+	State(Motor eMotor, GarageDoorController egdController);
 	virtual ~State();
+	Motor motor;
+	GarageDoorController gdController;
 };
 
 #endif /* STATE_H_ */

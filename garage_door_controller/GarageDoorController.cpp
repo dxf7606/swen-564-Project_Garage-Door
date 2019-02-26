@@ -69,6 +69,8 @@ GarageDoorController::GarageDoorController() {
     InputController *c = new InputController();
     this->motor = new Motor(*c);
     this->keyboardController = new KeyboardController(*c);
+	this->lastState = new ClosingState();
+	this->curState = new ClosedState();
 	this->infraredActive = false;
 	this->overcurrentActive = false;
 }

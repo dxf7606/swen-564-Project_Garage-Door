@@ -6,10 +6,12 @@
  */
 
 #include "OpenState.h"
+#include "Motor.h"
+#include "GarageDoorController.h"
 
-OpenState::OpenState() {
-	// TODO Auto-generated constructor stub
-
+OpenState::OpenState(Motor motor, GarageDoorController gdController) {
+	this->motor = motor;
+	this->gdController = gdController;
 }
 
 OpenState::~OpenState() {

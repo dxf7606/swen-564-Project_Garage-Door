@@ -5,12 +5,18 @@
  *      Author: mll8657
  */
 
+#include "State.h"
+#include "Motor.h"
+#include "GarageDoorController.h"
+#include "OpeningState.h"
+ 
 #ifndef CLOSEDSTATE_H_
 #define CLOSEDSTATE_H_
 
-class ClosedState {
+class ClosedState: public State {
 public:
-	ClosedState();
+	ClosedState(Motor eMotor, GarageDoorController egdController);
+	OpeningState buttonPush();
 	virtual ~ClosedState();
 };
 
