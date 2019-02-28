@@ -12,7 +12,7 @@
 void State::buttonInterrupt() {
 	switch(this->curState){
 		case ClosedState:
-			buttonInterrupt_Closed();
+			buttonInterrupt_Closed(true);
 			break;
 		case OpeningState:
 			buttonInterrupt_Opening_Closing();

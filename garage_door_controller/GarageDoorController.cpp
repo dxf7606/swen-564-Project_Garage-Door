@@ -12,11 +12,6 @@
 #include "KeyboardController.h"
 #include "Motor.h"
 #include "State.h"
-#include "OpeningState.h"
-#include "OpenState.h"
-#include "ClosingState.h"
-#include "ClosedState.h"
-#include "InputInterruptState.h"
 
 void GarageDoorController::processInput(char input) {
 	switch (input) 
