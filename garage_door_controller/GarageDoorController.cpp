@@ -12,37 +12,35 @@
 #include "KeyboardController.h"
 #include "Motor.h"
 #include "State.h"
-#include "OpeningState.h"
-#include "OpenState.h"
-#include "ClosingState.h"
-#include "ClosedState.h"
-#include "InputInterruptState.h"
+#include <pthread.h>
+#include <stdio.h>
+#include "inputBuffer.h"
+#include <windows.h>
+
+void *testPrint(void *arg) {
+    while (true) {
+        std::cout<<inputBuffer::inputBuffer[0];
+        Sleep(100);
+    }
+}
+
+namespace inputBuffer {
+    char inputBuffer[1];
+}
 
 void GarageDoorController::processInput(char input) {
 	switch (input) 
 	{
 		case 'm':
-			this->setState(curState.overcurrentInterrupt());
 			break;
 		case 'i':
-			this->setState(curState.infraredInterrupt());
 			break;
 		case 'r':
-			this->setState(curState.buttonInterrupt());
 			break;
 		case 'o':
-			this->setState(curState.doorOpenInterrupt());
 			break;
 		case 'c':
-			this->setState(curState.doorClosedInterrupt());
 			break;
-	}
-}
-
-void GarageDoorController::setState(State newState) {
-	if (typeid(this->curState).name() != typeid(newState).name()) {
-		this->lastState = this->curState;
-		this->curState = newState;
 	}
 }
 
@@ -69,8 +67,6 @@ GarageDoorController::GarageDoorController() {
     InputController *c = new InputController();
     this->motor = new Motor(*c);
     this->keyboardController = new KeyboardController(*c);
-	this->lastState = new ClosingState();
-	this->curState = new ClosedState();
 	this->infraredActive = false;
 	this->overcurrentActive = false;
 }
@@ -81,4 +77,7 @@ GarageDoorController::~GarageDoorController() {
 
 int main() {
     GarageDoorController *g = new GarageDoorController();
+    pthread_t doorControllerThread;
+    pthread_create(&doorControllerThread, NULL, &testPrint, NULL);
+    pthread_join(doorControllerThread, 0);
 }

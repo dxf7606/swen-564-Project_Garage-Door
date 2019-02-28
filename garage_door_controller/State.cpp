@@ -10,56 +10,10 @@
 #include "GarageDoorController.h"
 
 void State::buttonInterrupt() {
-	switch(this->curState){
-		case ClosedState:
-			buttonInterrupt_Closed();
-			break;
-		case OpeningState:
-			this->gdController.setInfraredActive(false);
-			this->gdController.setOvercurrentActive(false);
-			this->motor.setMotorUp(false);
-			this->motor.setMotorDown(false);
-			this->lastState = this->curState;
-			this->curState = InputInterruptState;
-			break;
-		case OpenState:
-			this->gdController.setInfraredActive(true);
-			this->gdController.setOvercurrentActive(true);
-			this->motor.setMotorUp(false);
-			this->motor.setMotorDown(true);
-			this->lastState = this->curState;
-			this->curState = ClosingState;
-			break;
-		case InputInterruptState:
-			switch(this->lastState) {
-				case ClosingState:
-//					this->gdController.setInfraredActive(false);
-//					this->gdController.setOvercurrentActive(true);
-//					this->motor.setMotorDown(false);
-//					this->motor.setMotorUp(true);
-//					this->lastState = this->curState;
-//					this->curState = OpeningState;
-					buttonInterrupt_Closed();
-					break;
-				case OpeningState:
-					this->gdController.setInfraredActive(true);
-					this->gdController.setOvercurrentActive(true);
-					this->motor.setMotorUp(false);
-					this->motor.setMotorDown(true);
-					this->lastState = this->curState;
-					this->curState = ClosingState;
-					break;
-			}
-			break;
-	}
 }
 
 void State::buttonInterrupt_Closed() {
-	this->gdController.setInfraredActive(false);
-	this->gdController.setOvercurrentActive(true);
-	this->motor.setMotorUp(true);
-	this->lastState = this->curState;
-	this->curState = OpeningState;
+	
 }
 
 //void State::buttonInterrupt_Opening() {
@@ -89,9 +43,9 @@ void State::doorClosedInterrupt() {
 
 }
 
-State::State(Motor eMotor, GarageDoorController egdController) {
-	this->motor = eMotor;
-	this->gdController = egdController;
+State::State() {
+	//this->motor = eMotor;
+	//this->gdController = egdController;
 	this->lastState = ClosingState;
 	this->curState = ClosedState;
 }
