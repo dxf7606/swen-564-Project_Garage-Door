@@ -13,9 +13,10 @@
 #include "Motor.h"
 #include "InputController.h"
 #include <cstdlib>
+#include <unistd.h>
 #include <stdlib.h>
-#include <chrono>
-#include <thread>
+//#include <chrono>
+//#include <thread>
 
 
 Motor::Motor(InputController inputController) {
@@ -23,7 +24,7 @@ Motor::Motor(InputController inputController) {
     this->position = 0;
     this->motorUp = false;
     this->motorDown = false;
-    this->refreshRate = std::chrono::milliseconds(10);
+    //this->refreshRate = std::chrono::milliseconds(10);
     this->controller = inputController;
 }
 
@@ -54,7 +55,8 @@ void *Motor::motorThread(void *arg) {
             position += 1;
         }
         
-        std::this_thread::sleep_for(this->refreshRate);
+//        std::this_thread::sleep_for(this->refreshRate);
+
     }
 }
 

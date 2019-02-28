@@ -7,6 +7,7 @@
 
 #include "KeyboardController.h"
 #include "InputController.h"
+#include <unistd.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,6 +17,7 @@ void *keyboardListener(void *arg) {
     char input;
     while (true) {
         std::cin>>input;
+        usleep(5000000);
         std::cout<<input;
     }
 }

@@ -14,32 +14,32 @@
 #include "State.h"
 
 void GarageDoorController::processInput(char input) {
-	switch (input) 
-	{
-		case 'm':
-			this->setState(curState.overcurrentInterrupt());
-			break;
-		case 'i':
-			this->setState(curState.infraredInterrupt());
-			break;
-		case 'r':
-			this->setState(curState.buttonInterrupt());
-			break;
-		case 'o':
-			this->setState(curState.doorOpenInterrupt());
-			break;
-		case 'c':
-			this->setState(curState.doorClosedInterrupt());
-			break;
-	}
+//	switch (input)
+//	{
+//		case 'm':
+//			this->setState(curState.overcurrentInterrupt());
+//			break;
+//		case 'i':
+//			this->setState(curState.infraredInterrupt());
+//			break;
+//		case 'r':
+//			this->setState(curState.buttonInterrupt());
+//			break;
+//		case 'o':
+//			this->setState(curState.doorOpenInterrupt());
+//			break;
+//		case 'c':
+//			this->setState(curState.doorClosedInterrupt());
+//			break;
+//	}
 }
 
-void GarageDoorController::setState(State newState) {
-	if (typeid(this->curState).name() != typeid(newState).name()) {
-		this->lastState = this->curState;
-		this->curState = newState;
-	}
-}
+//void GarageDoorController::setState(State newState) {
+//	if (typeid(this->curState).name() != typeid(newState).name()) {
+//		this->lastState = this->curState;
+//		this->curState = newState;
+//	}
+//}
 
 
 void GarageDoorController::setInfraredActive(bool active) {
@@ -64,8 +64,8 @@ GarageDoorController::GarageDoorController() {
     InputController *c = new InputController();
     this->motor = new Motor(*c);
     this->keyboardController = new KeyboardController(*c);
-	this->lastState = new ClosingState();
-	this->curState = new ClosedState();
+//	this->lastState = new ClosingState();
+//	this->curState = new ClosedState();
 	this->infraredActive = false;
 	this->overcurrentActive = false;
 }

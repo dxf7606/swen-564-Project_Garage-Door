@@ -4,6 +4,7 @@
  *  Created on: Feb 19, 2019
  *      Author: mll8657
  */
+#include <unistd.h>
 #include "InputController.h"
 #ifndef KEYBOARDCONTROLLER_H_
 #define KEYBOARDCONTROLLER_H_

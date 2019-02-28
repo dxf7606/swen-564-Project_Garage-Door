@@ -13,7 +13,7 @@
 #ifndef GARAGEDOORCONTROLLER_H_
 #define GARAGEDOORCONTROLLER_H_
 
-static class GarageDoorController {
+class GarageDoorController {
 public:
 	void processInput(char input);
 	GarageDoorController();
