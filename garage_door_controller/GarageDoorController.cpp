@@ -45,7 +45,6 @@ void GarageDoorController::processInput(char input) {
 	}
 }
 
-
 void GarageDoorController::setInfraredActive(bool active) {
 	this->infraredActive = active;
 }

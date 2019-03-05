@@ -25,15 +25,17 @@ public:
 	void overcurrentInterrupt();
 	void doorOpenInterrupt();
 	void doorClosedInterrupt();
-	State();
+	State(/*Motor eMotor, GarageDoorController egdController*/);
 	~State();
 	Concrete_State curState;
 	Concrete_State lastState;
-	//Motor motor;
-	//GarageDoorController gdController;
+//	Motor motor;
+//	GarageDoorController gdController;
 private:
-	void buttonInterrupt_Closed();
-//	void buttonInterrupt_Opening();
+	void buttonInterrupt_Closed(bool overcurrentActive);
+	void buttonInterrupt_Opening_Closing();
+	void buttonInterrupt_Open();
+	void buttonInterrupt_InputInterrupt();
 };
 
 #endif /* STATE_H_ */

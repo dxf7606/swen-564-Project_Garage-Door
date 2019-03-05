@@ -10,42 +10,127 @@
 #include "GarageDoorController.h"
 
 void State::buttonInterrupt() {
+	switch(this->curState){
+		case ClosedState:
+			buttonInterrupt_Closed(true);
+			break;
+		case OpeningState:
+			buttonInterrupt_Opening_Closing();
+			break;
+		case OpenState:
+			buttonInterrupt_Open();
+			break;
+		case ClosingState:
+			buttonInterrupt_Opening_Closing();
+			break;
+		case InputInterruptState:
+			switch(this->lastState) {
+				case ClosingState:
+					buttonInterrupt_Closed(true);
+					break;
+				case OpeningState:
+					buttonInterrupt_Open();
+					break;
+				case ClosedState:
+					buttonInterrupt_Closed(true);
+					break;
+				case OpenState:
+					buttonInterrupt_Open();
+					break;
+				case InputInterruptState:
+					buttonInterrupt_Closed(true);
+					break;
+			}
+			break;
+	}
 }
 
-void State::buttonInterrupt_Closed() {
-	
+void State::buttonInterrupt_Closed(bool overcurrentActive) {
+//	this->gdController.setInfraredActive(false);
+//	this->gdController.setOvercurrentActive(overcurrentActive);
+//	this->motor.setMotorDown(false);
+//	this->motor.setMotorUp(true);
+	this->lastState = this->curState;
+	this->curState = OpeningState;
 }
 
-//void State::buttonInterrupt_Opening() {
+void State::buttonInterrupt_Opening_Closing() {
 //	this->gdController.setInfraredActive(false);
 //	this->gdController.setOvercurrentActive(false);
 //	this->motor.setMotorUp(false);
 //	this->motor.setMotorDown(false);
-//	this->lastState = this->curState;
-//	this->curState = InputInterruptState;
-//}
+	this->lastState = this->curState;
+	this->curState = InputInterruptState;
+}
+
+void State::buttonInterrupt_Open() {
+//	this->gdController.setInfraredActive(true);
+//	this->gdController.setOvercurrentActive(true);
+//	this->motor.setMotorUp(false);
+//	this->motor.setMotorDown(true);
+	this->lastState = this->curState;
+	this->curState = ClosingState;
+}
 
 void State::infraredInterrupt() {
-//	return this;
+	if (this->curState == ClosingState) {
+//		this->gdController.setInfraredActive(false);
+//		this->gdController.setOvercurrentActive(false);
+//		this->motor.setMotorDown(false);
+//		this->motor.setMotorUp(true);
+		this->lastState = this->curState;
+		this->curState = OpeningState;
+	} else {
+		return;
+	}
 }
 
 void State::overcurrentInterrupt() {
-//	return this;
+	switch(this->curState){
+		case ClosedState:
+			break;
+		case OpeningState:
+			buttonInterrupt_Opening_Closing();
+			break;
+		case OpenState:
+			break;
+		case ClosingState:
+			buttonInterrupt_Closed(false);
+			break;
+		case InputInterruptState:
+			break;
+	}
 }
 
 void State::doorOpenInterrupt() {
-//	return this;
-
+	if (this->curState == OpeningState) {
+//		this->motor.setMotorUp(false);
+//		this->motor.setMotorDown(false);
+//		this->gdController.setOvercurrentActive(false);
+//		this->gdController.setInfraredActive(false);
+		this->lastState = this->curState;
+		this->curState = OpenState;
+	} else {
+		return;
+	}
 }
 
 void State::doorClosedInterrupt() {
-//	return this;
-
+	if (this->curState == ClosingState) {
+//		this->motor.setMotorDown(false);
+//		this->motor.setMotorUp(false);
+//		this->gdController.setOvercurrentActive(false);
+//		this->gdController.setInfraredActive(false);
+		this->lastState = this->curState;
+		this->curState = ClosedState;
+	} else {
+		return;
+	}
 }
 
-State::State() {
-	//this->motor = eMotor;
-	//this->gdController = egdController;
+State::State(/*Motor eMotor, GarageDoorController egdController*/) {
+//	this->motor = eMotor;
+//	this->gdController = egdController;
 	this->lastState = ClosingState;
 	this->curState = ClosedState;
 }

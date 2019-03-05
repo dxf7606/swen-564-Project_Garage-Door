@@ -7,6 +7,7 @@
 
 #include "KeyboardController.h"
 #include "InputController.h"
+#include <unistd.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
