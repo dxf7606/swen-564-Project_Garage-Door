@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include <iostream>
 #include "inputBuffer.h"
-#include <chrono>
 
 void *keyboardListener(void *arg) {
     char input;
@@ -27,7 +26,6 @@ KeyboardController::KeyboardController(InputController controller) {
     this->controller = controller;
     pthread_t keyboardThread;
     pthread_create(&keyboardThread, NULL, &keyboardListener, NULL);
-    //pthread_join(keyboardThread, 0);
 }
 
 KeyboardController::~KeyboardController() {

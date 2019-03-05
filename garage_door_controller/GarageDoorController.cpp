@@ -16,11 +16,12 @@
 #include <stdio.h>
 #include "inputBuffer.h"
 #include <windows.h>
+#include <unistd.h>
 
 void *testPrint(void *arg) {
     while (true) {
         std::cout<<inputBuffer::inputBuffer[0];
-        Sleep(100);
+        usleep(100000);
     }
 }
 
