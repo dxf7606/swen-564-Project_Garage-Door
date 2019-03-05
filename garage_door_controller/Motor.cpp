@@ -15,49 +15,54 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <stdlib.h>
-//#include <chrono>
-//#include <thread>
+#include <pthread.h>
 
 
-Motor::Motor(InputController inputController) {
+Motor::Motor(InputController c) {
     // create motor
     this->position = 0;
     this->motorUp = false;
     this->motorDown = false;
-    //this->refreshRate = std::chrono::milliseconds(10);
-    this->controller = inputController;
+    this->refreshRate = 10000;
+    this->controller = c;
 }
 
 Motor::~Motor() {
 	// TODO Auto-generated destructor stub
 }
 
-void *Motor::motorThread(void *arg) {
-    while (true) {
-        if (motorDown and motorUp) {
-            // never supposed to happen, stop the thread (error state).
-            break;
-        }
-        else if (position <= 0 and motorDown) {
-            // send fully closed input. Turn off motorDown
-            controller.sendInput('c');
-            motorDown = false;
-        }
-        else if (position >= 100 and motorUp) {
-            // send fully open input. Turn off motorUp
-            controller.sendInput('o');
-            motorUp = false;
-        }
-        else if (motorDown) {
-            position -= 1;
-        }
-        else if (motorUp) {
-            position += 1;
-        }
+char closeDoor() {
+//    while (true) {
+//        if (getMotorDown() and getMotorUp()) {
+//            // never supposed to happen, stop the thread (error state).
+//            break;
+//        }
+//        else if (getPosition() <= 0 and getMotorDown()) {
+//            // send fully closed input. Turn off motorDown
+//            controller.sendInput('c');
+//            motorDown = false;
+//        }
+//        else if (getPosition() >= 100 and getMotorUp()) {
+//            // send fully open input. Turn off motorUp
+//            controller.sendInput('o');
+//            motorUp = false;
+//        }
+//        else if (getMotorDown()) {
+//            position -= 1;
+//        }
+//        else if (motorUp) {
+//            position += 1;
+//        }
         
-//        std::this_thread::sleep_for(this->refreshRate);
+//        usleep(this->refreshRate);
+//    }
 
-    }
+	while ((this->motorDown==true && this->motorUp==false) && this->position != 0 && this->closing == true) {
+		pthread_t motorThreadInst;
+		pthread_create(&motorThreadInst, NULL, usleep(10), NULL);
+		this->position--;
+	}
+	return 'c';
 }
 
 void Motor::setMotorUp(bool setting) {

@@ -22,11 +22,11 @@ public:
 	bool getInfraredActive();
 	bool getOvercurrentActive();
 	void setOvercurrentActive(bool active);
+	Motor motor;
 private:
 	bool infraredActive;
 	bool overcurrentActive;
 	KeyboardController *keyboardController;
-	Motor *motor;
 };
 
 #endif /* GARAGEDOORCONTROLLER_H_ */
