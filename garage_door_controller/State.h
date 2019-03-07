@@ -4,7 +4,6 @@
  *  Created on: Feb 19, 2019
  *      Author: mll8657
  */
-
 #ifndef STATE_H_
 #define STATE_H_
 #include "Motor.h"
@@ -34,6 +33,8 @@ private:
     Motor *motor;
     Concrete_State curState;
     Concrete_State lastState;
+    bool infraredActive;
+    bool overcurrentActive;
 };
 
 #endif /* STATE_H_ */

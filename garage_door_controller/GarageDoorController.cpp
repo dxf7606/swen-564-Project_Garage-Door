@@ -15,7 +15,6 @@
 #include <pthread.h>
 #include <stdio.h>
 #include "inputBuffer.h"
-#include <windows.h>
 #include <unistd.h>
 
 GarageDoorController *g;
@@ -56,21 +55,21 @@ void GarageDoorController::processInput(char input) {
     }
 }
 
-void GarageDoorController::setInfraredActive(bool active) {
-    this->infraredActive = active;
-}
-
-bool GarageDoorController::getInfraredActive() {
-    return this->infraredActive;
-}
-
-void GarageDoorController::setOvercurrentActive(bool active) {
-    this->overcurrentActive = active;
-}
-
-bool GarageDoorController::getOvercurrentActive() {
-    return this->overcurrentActive;
-}
+//void GarageDoorController::setInfraredActive(bool active) {
+//    this->infraredActive = active;
+//}
+//
+//bool GarageDoorController::getInfraredActive() {
+//    return this->infraredActive;
+//}
+//
+//void GarageDoorController::setOvercurrentActive(bool active) {
+//    this->overcurrentActive = active;
+//}
+//
+//bool GarageDoorController::getOvercurrentActive() {
+//    return this->overcurrentActive;
+//}
 
 GarageDoorController::GarageDoorController() {
     InputController *c = new InputController();
@@ -78,8 +77,8 @@ GarageDoorController::GarageDoorController() {
     this->motor = m;
     this->state = new State(m);
     this->keyboardController = new KeyboardController(*c);
-    this->infraredActive = false;
-    this->overcurrentActive = false;
+//    this->infraredActive = false;
+//    this->overcurrentActive = false;
 }
 
 GarageDoorController::~GarageDoorController() {

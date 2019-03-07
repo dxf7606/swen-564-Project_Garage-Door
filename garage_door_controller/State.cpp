@@ -7,7 +7,6 @@
 
 #include "State.h"
 #include "Motor.h"
-#include "GarageDoorController.h"
 
 void State::buttonInterrupt() {
 	switch(this->curState){
@@ -46,8 +45,8 @@ void State::buttonInterrupt() {
 }
 
 void State::buttonInterrupt_Closed(bool overcurrentActive) {
-//	this->gdController.setInfraredActive(false);
-//	this->gdController.setOvercurrentActive(overcurrentActive);
+	this->infraredActive=false;
+	this->overcurrentActive=overcurrentActive;
 //	this->motor.setMotorDown(false);
 //	this->motor.setMotorUp(true);
 	this->lastState = this->curState;
@@ -55,8 +54,8 @@ void State::buttonInterrupt_Closed(bool overcurrentActive) {
 }
 
 void State::buttonInterrupt_Opening_Closing() {
-//	this->gdController.setInfraredActive(false);
-//	this->gdController.setOvercurrentActive(false);
+	this->infraredActive=false;
+	this->overcurrentActive=false;
 //	this->motor.setMotorUp(false);
 //	this->motor.setMotorDown(false);
 	this->lastState = this->curState;
@@ -64,8 +63,8 @@ void State::buttonInterrupt_Opening_Closing() {
 }
 
 void State::buttonInterrupt_Open() {
-//	this->gdController.setInfraredActive(true);
-//	this->gdController.setOvercurrentActive(true);
+	this->infraredActive=true;
+	this->overcurrentActive=true;
 //	this->motor.setMotorUp(false);
 //	this->motor.setMotorDown(true);
 	this->lastState = this->curState;
@@ -74,8 +73,8 @@ void State::buttonInterrupt_Open() {
 
 void State::infraredInterrupt() {
 	if (this->curState == ClosingState) {
-//		this->gdController.setInfraredActive(false);
-//		this->gdController.setOvercurrentActive(false);
+		this->infraredActive=false;
+		this->overcurrentActive=false;
 //		this->motor.setMotorDown(false);
 //		this->motor.setMotorUp(true);
 		this->lastState = this->curState;
@@ -106,8 +105,8 @@ void State::doorOpenInterrupt() {
 	if (this->curState == OpeningState) {
 //		this->motor.setMotorUp(false);
 //		this->motor.setMotorDown(false);
-//		this->gdController.setOvercurrentActive(false);
-//		this->gdController.setInfraredActive(false);
+		this->overcurrentActive=false;
+		this->infraredActive=false;
 		this->lastState = this->curState;
 		this->curState = OpenState;
 	} else {
@@ -119,8 +118,8 @@ void State::doorClosedInterrupt() {
 	if (this->curState == ClosingState) {
 //		this->motor.setMotorDown(false);
 //		this->motor.setMotorUp(false);
-//		this->gdController.setOvercurrentActive(false);
-//		this->gdController.setInfraredActive(false);
+		this->overcurrentActive=false;
+		this->infraredActive=false;
 		this->lastState = this->curState;
 		this->curState = ClosedState;
 	} else {
