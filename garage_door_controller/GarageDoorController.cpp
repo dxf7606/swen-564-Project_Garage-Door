@@ -72,9 +72,9 @@ void GarageDoorController::processInput(char input) {
 //}
 
 GarageDoorController::GarageDoorController() {
-    this->state = new State();
     InputController *c = new InputController();
-    this->motor = new Motor();
+    Motor *motor = new Motor();
+    this->state = new State(*motor);
     this->keyboardController = new KeyboardController(*c);
 //    this->infraredActive = false;
 //    this->overcurrentActive = false;
