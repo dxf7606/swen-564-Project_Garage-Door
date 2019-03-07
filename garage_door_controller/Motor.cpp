@@ -18,20 +18,24 @@
 #include <pthread.h>
 
 
-Motor::Motor(InputController c) {
+Motor::Motor() {
     // create motor
     this->position = 0;
     this->motorUp = false;
     this->motorDown = false;
     this->refreshRate = 10000;
-    this->controller = c;
+//    this->controller = c;
 }
 
 Motor::~Motor() {
 	// TODO Auto-generated destructor stub
 }
 
-char closeDoor() {
+void *threadWait(void *arg) {
+	usleep(10000);
+}
+
+char Motor::closeDoor() {
 //    while (true) {
 //        if (getMotorDown() and getMotorUp()) {
 //            // never supposed to happen, stop the thread (error state).
@@ -57,12 +61,26 @@ char closeDoor() {
 //        usleep(this->refreshRate);
 //    }
 
-	while ((this->motorDown==true && this->motorUp==false) && this->position != 0 && this->closing == true) {
+	while (/*(this->motorDown==true && this->motorUp==false) && */this->position != 0 /*&& this->closing == true*/) {
 		pthread_t motorThreadInst;
-		pthread_create(&motorThreadInst, NULL, usleep(10), NULL);
+		pthread_create(&motorThreadInst, NULL, &threadWait, NULL);
 		this->position--;
 	}
 	return 'c';
+}
+
+char Motor::openDoor() {
+	while (this->position != 100) {
+		pthread_t motorThreadInst;
+		pthread_create(&motorThreadInst, NULL, &threadWait, NULL);
+		this->position++;
+	}
+	return 'o';
+}
+
+char Motor::stopDoor() {
+	//ToDo: Figure out how to actually interrupt closeDoor & openDoor
+	return 'p';
 }
 
 void Motor::setMotorUp(bool setting) {

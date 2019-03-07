@@ -18,12 +18,15 @@ private:
     int position;
     void *motorThread(void *arg);
     void motorThreadCall();
-    InputController controller;
+//    InputController controller;
 //    std::chrono::milliseconds refreshRate;
 public:
     void setMotorUp(bool setting);
     void setMotorDown(bool setting);
-	Motor(InputController c);
+    char openDoor();
+    char closeDoor();
+    char stopDoor();
+	Motor(/*InputController c*/);
 	virtual ~Motor();
 };
 

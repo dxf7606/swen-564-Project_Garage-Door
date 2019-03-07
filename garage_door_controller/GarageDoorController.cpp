@@ -18,13 +18,6 @@
 #include <windows.h>
 #include <unistd.h>
 
-void *testPrint(void *arg) {
-    while (true) {
-        std::cout<<inputBuffer::inputBuffer[0];
-        usleep(100000);
-    }
-}
-
 namespace inputBuffer {
     char inputBuffer[1];
 }
@@ -65,7 +58,7 @@ GarageDoorController::GarageDoorController() {
 	//this->lastState = new ClosingState();
 	//this->curState = new ClosedState();
     InputController *c = new InputController();
-    this->motor = new Motor(*c);
+    this->motor = new Motor(/**c*/);
     this->keyboardController = new KeyboardController(*c);
 	this->infraredActive = false;
 	this->overcurrentActive = false;
@@ -73,6 +66,13 @@ GarageDoorController::GarageDoorController() {
 
 GarageDoorController::~GarageDoorController() {
 	// TODO Auto-generated destructor stub
+}
+
+void *testPrint(void *arg) {
+    while (true) {
+        std::cout<<inputBuffer::inputBuffer[0];
+        usleep(100000);
+    }
 }
 
 int main() {
