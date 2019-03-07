@@ -18,54 +18,71 @@
 #include <windows.h>
 #include <unistd.h>
 
+GarageDoorController *g;
+
 namespace inputBuffer {
     char inputBuffer[1];
 }
 
+void *garageDoorThread(void *arg) {
+    while (true) {
+        char input = inputBuffer::inputBuffer[0];
+        inputBuffer::inputBuffer[0] = (char) 0;
+         if (input != (char) 0) {
+             g->processInput(input);
+         }
+        usleep(100000);
+    }
+}
+
 void GarageDoorController::processInput(char input) {
-	switch (input) 
-	{
-		case 'm':
-			break;
-		case 'i':
-			break;
-		case 'r':
-			break;
-		case 'o':
-			break;
-		case 'c':
-			break;
-	}
+    switch (input) 
+    {
+        case 'm':
+            this->state->overcurrentInterrupt();
+            break;
+        case 'i':
+            this->state->infraredInterrupt();
+            break;
+        case 'r':
+            this->state->buttonInterrupt();
+            break;
+        case 'o':
+            this->state->doorOpenInterrupt();
+            break;
+        case 'c':
+            this->state->doorClosedInterrupt();
+            break;
+    }
 }
 
 void GarageDoorController::setInfraredActive(bool active) {
-	this->infraredActive = active;
+    this->infraredActive = active;
 }
 
 bool GarageDoorController::getInfraredActive() {
-	return this->infraredActive;
+    return this->infraredActive;
 }
 
 void GarageDoorController::setOvercurrentActive(bool active) {
-	this->overcurrentActive = active;
+    this->overcurrentActive = active;
 }
 
 bool GarageDoorController::getOvercurrentActive() {
-	return this->overcurrentActive;
+    return this->overcurrentActive;
 }
 
 GarageDoorController::GarageDoorController() {
-	//this->lastState = new ClosingState();
-	//this->curState = new ClosedState();
+    this->state = new State();
     InputController *c = new InputController();
     this->motor = new Motor(/**c*/);
     this->keyboardController = new KeyboardController(*c);
-	this->infraredActive = false;
-	this->overcurrentActive = false;
+    this->infraredActive = false;
+    this->overcurrentActive = false;
 }
 
 GarageDoorController::~GarageDoorController() {
-	// TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 }
 
 void *testPrint(void *arg) {
@@ -76,8 +93,8 @@ void *testPrint(void *arg) {
 }
 
 int main() {
-    GarageDoorController *g = new GarageDoorController();
+    g = new GarageDoorController();
     pthread_t doorControllerThread;
-    pthread_create(&doorControllerThread, NULL, &testPrint, NULL);
+    pthread_create(&doorControllerThread, NULL, &garageDoorThread, NULL);
     pthread_join(doorControllerThread, 0);
 }

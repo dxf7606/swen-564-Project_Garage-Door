@@ -7,8 +7,6 @@
 
 #ifndef STATE_H_
 #define STATE_H_
-#include "Motor.h"
-#include "GarageDoorController.h"
 
 enum Concrete_State {
 	ClosedState,
@@ -25,17 +23,15 @@ public:
 	void overcurrentInterrupt();
 	void doorOpenInterrupt();
 	void doorClosedInterrupt();
-	State(/*Motor eMotor, GarageDoorController egdController*/);
+	State();
 	~State();
-	Concrete_State curState;
-	Concrete_State lastState;
-//	Motor motor;
-//	GarageDoorController gdController;
 private:
 	void buttonInterrupt_Closed(bool overcurrentActive);
 	void buttonInterrupt_Opening_Closing();
 	void buttonInterrupt_Open();
 	void buttonInterrupt_InputInterrupt();
+    Concrete_State curState;
+    Concrete_State lastState;
 };
 
 #endif /* STATE_H_ */

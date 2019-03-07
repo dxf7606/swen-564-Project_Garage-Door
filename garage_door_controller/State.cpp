@@ -128,11 +128,9 @@ void State::doorClosedInterrupt() {
 	}
 }
 
-State::State(/*Motor eMotor, GarageDoorController egdController*/) {
-//	this->motor = eMotor;
-//	this->gdController = egdController;
-	this->lastState = ClosingState;
-	this->curState = ClosedState;
+State::State() {
+    this->curState = ClosedState;
+    this->lastState = ClosedState;
 }
 
 State::~State() {
