@@ -25,6 +25,7 @@ public:
 private:
 	bool infraredActive;
 	bool overcurrentActive;
+    State *state;
 	KeyboardController *keyboardController;
 	Motor *motor;
 };
