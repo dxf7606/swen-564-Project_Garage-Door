@@ -22,7 +22,7 @@ public:
 	bool getInfraredActive();
 	bool getOvercurrentActive();
 	void setOvercurrentActive(bool active);
-	Motor motor;
+	Motor *motor;
 private:
 	bool infraredActive;
 	bool overcurrentActive;

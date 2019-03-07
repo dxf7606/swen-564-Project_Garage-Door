@@ -73,9 +73,10 @@ bool GarageDoorController::getOvercurrentActive() {
 }
 
 GarageDoorController::GarageDoorController() {
-    this->state = new State();
     InputController *c = new InputController();
-    this->motor = new Motor(/**c*/);
+    Motor *m = new Motor();
+    this->motor = m;
+    this->state = new State(m);
     this->keyboardController = new KeyboardController(*c);
     this->infraredActive = false;
     this->overcurrentActive = false;

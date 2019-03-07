@@ -11,22 +11,10 @@
 #define MOTOR_H_
 
 class Motor {
-private:
-    bool motorUp;
-    bool motorDown;
-    int refreshRate;
-    int position;
-    void *motorThread(void *arg);
-    void motorThreadCall();
-//    InputController controller;
-//    std::chrono::milliseconds refreshRate;
 public:
     void setMotorUp(bool setting);
     void setMotorDown(bool setting);
-    char openDoor();
-    char closeDoor();
-    char stopDoor();
-	Motor(/*InputController c*/);
+	Motor();
 	virtual ~Motor();
 };
 
