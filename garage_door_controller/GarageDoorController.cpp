@@ -18,9 +18,15 @@
 #include <windows.h>
 #include <unistd.h>
 
-void *testPrint(void *arg) {
+GarageDoorController *g;
+
+void *garageDoorThread(void *arg) {
     while (true) {
-        std::cout<<inputBuffer::inputBuffer[0];
+        char input = inputBuffer::inputBuffer[0];
+        inputBuffer::inputBuffer[0] = (char) 0;
+         if (input != (char) 0) {
+             g->processInput(input);
+         }
         usleep(100000);
     }
 }
@@ -30,6 +36,7 @@ namespace inputBuffer {
 }
 
 void GarageDoorController::processInput(char input) {
+    std::cout<<input;
 	switch (input) 
 	{
 		case 'm':
@@ -76,8 +83,8 @@ GarageDoorController::~GarageDoorController() {
 }
 
 int main() {
-    GarageDoorController *g = new GarageDoorController();
+    g = new GarageDoorController();
     pthread_t doorControllerThread;
-    pthread_create(&doorControllerThread, NULL, &testPrint, NULL);
+    pthread_create(&doorControllerThread, NULL, &garageDoorThread, NULL);
     pthread_join(doorControllerThread, 0);
 }

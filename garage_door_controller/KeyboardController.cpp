@@ -19,7 +19,6 @@ void *keyboardListener(void *arg) {
     while (true) {
         std::cin>>input;
         inputBuffer::inputBuffer[0] = input;
-        std::cout<<input;
     }
 }
 
