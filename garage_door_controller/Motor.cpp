@@ -17,10 +17,9 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-
 namespace motorBuffer {
-	bool motorUp;
-	bool motorDown;
+    bool motorUp;
+    bool motorDown;
 }
 
 Motor::Motor() {
@@ -31,30 +30,30 @@ Motor::~Motor() {
 	// TODO Auto-generated destructor stub
 }
 
-void *threadWait(void *arg) {
-	usleep(10000);
-}
-
 void *motorThread(void *arg) {
-	int position = 0;
-	bool motorUp = false;
-	bool motorDown = false;
-	int refreshRate = 10000;
+    int position = 0;
+    bool motorUp = false;
+    bool motorDown = false;
+    int refreshRate = 10000;
     while (true) {
-    	motorUp = motorBuffer::motorUp;
-    	motorDown = motorBuffer::motorDown;
+        motorUp = motorBuffer::motorUp;
+        motorDown = motorBuffer::motorDown;
         if (motorDown and motorUp) {
             // never supposed to happen, stop the thread (error state).
             break;
         }
         else if (position <= 0 and motorDown) {
             // send fully closed input. Turn off motorDown
-//            controller.sendInput('c');
+
+            // controller.sendInput('c');
+
             motorDown = false;
         }
         else if (position >= 100 and motorUp) {
             // send fully open input. Turn off motorUp
-//            controller.sendInput('o');
+
+            // controller.sendInput('o');
+
             motorUp = false;
         }
         else if (motorDown) {

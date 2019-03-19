@@ -55,29 +55,11 @@ void GarageDoorController::processInput(char input) {
     }
 }
 
-//void GarageDoorController::setInfraredActive(bool active) {
-//    this->infraredActive = active;
-//}
-//
-//bool GarageDoorController::getInfraredActive() {
-//    return this->infraredActive;
-//}
-//
-//void GarageDoorController::setOvercurrentActive(bool active) {
-//    this->overcurrentActive = active;
-//}
-//
-//bool GarageDoorController::getOvercurrentActive() {
-//    return this->overcurrentActive;
-//}
-
 GarageDoorController::GarageDoorController() {
     InputController *c = new InputController();
-    Motor *motor = new Motor();
-    this->state = new State(*motor);
+    Motor *m = new Motor();
+    this->state = new State(m);
     this->keyboardController = new KeyboardController(*c);
-//    this->infraredActive = false;
-//    this->overcurrentActive = false;
 }
 
 GarageDoorController::~GarageDoorController() {
