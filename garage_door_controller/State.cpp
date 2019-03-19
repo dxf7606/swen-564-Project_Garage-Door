@@ -122,6 +122,7 @@ void State::doorOpenInterrupt() {
 		this->motor->setMotorDown(false);
 		this->overcurrentActive=false;
 		this->infraredActive=false;
+        printf("Door fully open\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n");
 		this->lastState = this->curState;
 		this->curState = OpenState;
 	} else {

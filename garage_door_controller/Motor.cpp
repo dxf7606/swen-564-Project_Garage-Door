@@ -17,20 +17,13 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
-
-Motor::Motor() {
-
-}
-
-Motor::~Motor() {
-	// TODO Auto-generated destructor stub
-}
+#include <stdio.h>
 
 void *motorThread(void *arg) {
     int position = 0;
     bool motorUp = false;
     bool motorDown = false;
-    int refreshRate = 10000;
+    int refreshRate = 1000;
     while (true) {
         motorUp = motorBuffer::motorUp;
         motorDown = motorBuffer::motorDown;
@@ -61,6 +54,15 @@ void *motorThread(void *arg) {
         
         usleep(refreshRate);
     }
+}
+
+Motor::Motor() {
+    pthread_t mt;
+    pthread_create(&mt, NULL, &motorThread, NULL);
+}
+
+Motor::~Motor() {
+	// TODO Auto-generated destructor stub
 }
 
 void Motor::setMotorUp(bool setting) {
