@@ -161,7 +161,6 @@ State::State(Motor *m) {
     this->motor = m;
     this->curState = ClosedState;
     this->lastState = ClosedState;
-    this->motor = motor;
 }
 
 State::~State() {
