@@ -5,13 +5,17 @@
  *      Author: mll8657
  */
 
+#include <cstdlib>
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include "State.h"
-#include "motor.h"
+#include "Motor.h"
 
 void State::buttonInterrupt() {
 	switch(this->curState){
 		case ClosedState:
-			buttonInterrupt_Closed(true);
+			buttonInterrupt_Closed();
 			break;
 		case OpeningState:
 			buttonInterrupt_Opening_Closing();
@@ -25,28 +29,39 @@ void State::buttonInterrupt() {
 		case InputInterruptState:
 			switch(this->lastState) {
 				case ClosingState:
-					buttonInterrupt_Closed(true);
+					buttonInterrupt_Closed();
 					break;
 				case OpeningState:
 					buttonInterrupt_Open();
 					break;
 				case ClosedState:
-					buttonInterrupt_Closed(true);
+					buttonInterrupt_Closed();
 					break;
 				case OpenState:
 					buttonInterrupt_Open();
 					break;
 				case InputInterruptState:
-					buttonInterrupt_Closed(true);
+					buttonInterrupt_Closed();
 					break;
 			}
 			break;
 	}
 }
 
-void State::buttonInterrupt_Closed(bool overcurrentActive) {
+void State::buttonInterrupt_Closed() {
+	this->infraredActive=false;
+	this->overcurrentActive=true;
+	printf("Button input received\nInfrared set to inactive\nOvercurrent set to active\n");
+	this->motor->setMotorDown(false);
+	this->motor->setMotorUp(true);
+	this->lastState = this->curState;
+	this->curState = OpeningState;
+}
+
+void State::OvercurrentInterrupt_Closing() {
 	this->infraredActive=false;
 	this->overcurrentActive=overcurrentActive;
+	printf("Button input received\nInfrared set to inactive\nOvercurrent set to inactive");
 	this->motor->setMotorDown(false);
 	this->motor->setMotorUp(true);
 	this->lastState = this->curState;
@@ -94,7 +109,7 @@ void State::overcurrentInterrupt() {
 		case OpenState:
 			break;
 		case ClosingState:
-			buttonInterrupt_Closed(false);
+			OvercurrentInterrupt_Closing();
 			break;
 		case InputInterruptState:
 			break;

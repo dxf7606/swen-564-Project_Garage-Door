@@ -27,10 +27,11 @@ public:
 	State(Motor *m);
 	~State();
 private:
-	void buttonInterrupt_Closed(bool overcurrentActive);
+	void buttonInterrupt_Closed();
 	void buttonInterrupt_Opening_Closing();
 	void buttonInterrupt_Open();
 	void buttonInterrupt_InputInterrupt();
+	void OvercurrentInterrupt_Closing();
     Motor *motor;
     Concrete_State curState;
     Concrete_State lastState;

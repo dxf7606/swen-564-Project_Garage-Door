@@ -5,22 +5,18 @@
  *      Author: mll8657
  * 
  * Responsible for:
- * interpreting motor commands from controller,
+ * interpreting motor commands from state,
  * simulating movement,
  * generating open and closed signals
  */
 
 #include "Motor.h"
-#include "InputController.h"
+#include "motorBuffer.h"
+#include "InputBuffer.h"
 #include <cstdlib>
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
-
-namespace motorBuffer {
-    bool motorUp;
-    bool motorDown;
-}
 
 Motor::Motor() {
 
@@ -45,14 +41,14 @@ void *motorThread(void *arg) {
         else if (position <= 0 and motorDown) {
             // send fully closed input. Turn off motorDown
 
-            // controller.sendInput('c');
+            inputBuffer::inputBuffer[0] = 'c';
 
             motorDown = false;
         }
         else if (position >= 100 and motorUp) {
             // send fully open input. Turn off motorUp
 
-            // controller.sendInput('o');
+        	inputBuffer::inputBuffer[0] = 'o';
 
             motorUp = false;
         }
