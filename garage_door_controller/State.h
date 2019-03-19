@@ -32,6 +32,7 @@ private:
 	void buttonInterrupt_Open();
 	void buttonInterrupt_InputInterrupt();
 	void OvercurrentInterrupt_Closing();
+	void OvercurrentInterrupt_Opening_Closing()
     Motor *motor;
     Concrete_State curState;
     Concrete_State lastState;
