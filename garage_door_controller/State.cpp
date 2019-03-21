@@ -55,7 +55,7 @@ void State::buttonInterrupt_Closed() {
 	this->motor->setMotorUp(true);
 	this->lastState = this->curState;
 	this->curState = OpeningState;
-	printf("Button input received\nInfrared set to inactive\nOvercurrent set to active\nMotor opening\n");
+	printf("Button input received\nInfrared set to inactive\nOvercurrent set to active\nMotor opening\n\n");
 }
 
 void State::OvercurrentInterrupt_Closing() {
@@ -65,7 +65,7 @@ void State::OvercurrentInterrupt_Closing() {
 	this->motor->setMotorUp(true);
 	this->lastState = this->curState;
 	this->curState = OpeningState;
-	printf("Overcurrent input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor opening\n");
+	printf("Overcurrent input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor opening\n\n");
 }
 
 void State::OvercurrentInterrupt_Opening_Closing() {
@@ -75,7 +75,7 @@ void State::OvercurrentInterrupt_Opening_Closing() {
 	this->motor->setMotorDown(false);
 	this->lastState = this->curState;
 	this->curState = InputInterruptState;
-	printf("Overcurrent input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n");
+	printf("Overcurrent input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n\n");
 }
 
 void State::buttonInterrupt_Opening_Closing() {
@@ -85,7 +85,7 @@ void State::buttonInterrupt_Opening_Closing() {
 	this->motor->setMotorDown(false);
 	this->lastState = this->curState;
 	this->curState = InputInterruptState;
-	printf("Button input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n");
+	printf("Button input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n\n");
 }
 
 void State::buttonInterrupt_Open() {
@@ -95,7 +95,7 @@ void State::buttonInterrupt_Open() {
 	this->motor->setMotorDown(true);
 	this->lastState = this->curState;
 	this->curState = ClosingState;
-	printf("Button input received\nInfrared set to active\nOvercurrent set to active\nMotor closing\n");
+	printf("Button input received\nInfrared set to active\nOvercurrent set to active\nMotor closing\n\n");
 }
 
 void State::infraredInterrupt() {
@@ -106,7 +106,7 @@ void State::infraredInterrupt() {
 		this->motor->setMotorUp(true);
 		this->lastState = this->curState;
 		this->curState = OpeningState;
-		printf("Infrared input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n");
+		printf("Infrared input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n\n");
 	} else {
 		return;
 	}
@@ -137,7 +137,7 @@ void State::doorOpenInterrupt() {
 		this->infraredActive=false;
 		this->lastState = this->curState;
 		this->curState = OpenState;
-		printf("Door fully open\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n");
+		printf("Door fully open\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n\n");
 	} else {
 		return;
 	}
@@ -151,7 +151,7 @@ void State::doorClosedInterrupt() {
 		this->infraredActive=false;
 		this->lastState = this->curState;
 		this->curState = ClosedState;
-		printf("Door fully closed\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n");
+		printf("Door fully closed\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n\n");
 	} else {
 		return;
 	}

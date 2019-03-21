@@ -17,13 +17,12 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <stdio.h>
 
 void *motorThread(void *arg) {
     int position = 0;
     bool motorUp = false;
     bool motorDown = false;
-    int refreshRate = 1000;
+    int refreshRate = 100000;
     while (true) {
         motorUp = motorBuffer::motorUp;
         motorDown = motorBuffer::motorDown;
