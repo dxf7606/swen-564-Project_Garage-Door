@@ -106,7 +106,7 @@ void State::infraredInterrupt() {
 		this->motor->setMotorUp(true);
 		this->lastState = this->curState;
 		this->curState = OpeningState;
-		printf("Infrared input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor stopped\n\n");
+		printf("Infrared input received\nInfrared set to inactive\nOvercurrent set to inactive\nMotor opening\n\n");
 	} else {
 		return;
 	}
