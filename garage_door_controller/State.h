@@ -4,7 +4,7 @@
  *  Created on: Feb 19, 2019
  *      Author: mll8657
  */
-#include "Motor.h";
+#include "Motor.h"
 #ifndef STATE_H_
 #define STATE_H_
 #include "Motor.h"

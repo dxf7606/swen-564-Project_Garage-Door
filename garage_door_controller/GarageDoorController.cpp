@@ -62,17 +62,6 @@ GarageDoorController::GarageDoorController() {
     this->keyboardController = new KeyboardController(*c);
 }
 
-GarageDoorController::~GarageDoorController() {
-    // TODO Auto-generated destructor stub
-}
-
-void *testPrint(void *arg) {
-    while (true) {
-        std::cout<<inputBuffer::inputBuffer[0];
-        usleep(100000);
-    }
-}
-
 int main() {
     g = new GarageDoorController();
     pthread_t doorControllerThread;

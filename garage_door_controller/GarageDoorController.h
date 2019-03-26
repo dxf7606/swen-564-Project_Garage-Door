@@ -17,7 +17,6 @@ class GarageDoorController {
 public:
 	void processInput(char input);
 	GarageDoorController();
-	virtual ~GarageDoorController();
 	Motor *motor;
 private:
     State *state;

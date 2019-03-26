@@ -11,12 +11,17 @@
  */
 
 #include "Motor.h"
-#include "motorBuffer.h"
 #include "InputBuffer.h"
 #include <cstdlib>
 #include <unistd.h>
 #include <stdlib.h>
 #include <pthread.h>
+
+namespace motorBuffer {
+    bool motorUp = false;
+    bool motorDown = false;
+}
+
 
 void *motorThread(void *arg) {
     int position = 0;
