@@ -4,16 +4,12 @@
  *  Created on: Feb 19, 2019
  *      Author: mll8657
  */
-#include <typeinfo>
-#include <string>
-#include <iostream>
 #include "GarageDoorController.h"
 #include "InputController.h"
 #include "KeyboardController.h"
 #include "Motor.h"
 #include "State.h"
 #include <pthread.h>
-#include <stdio.h>
 #include "inputBuffer.h"
 #include <unistd.h>
 

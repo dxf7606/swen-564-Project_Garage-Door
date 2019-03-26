@@ -12,9 +12,7 @@
 
 #include "Motor.h"
 #include "InputBuffer.h"
-#include <cstdlib>
 #include <unistd.h>
-#include <stdlib.h>
 #include <pthread.h>
 
 namespace motorBuffer {

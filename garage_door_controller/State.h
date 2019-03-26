@@ -7,7 +7,6 @@
 #include "Motor.h"
 #ifndef STATE_H_
 #define STATE_H_
-#include "Motor.h"
 
 enum Concrete_State {
 	ClosedState,

@@ -7,7 +7,6 @@
 
 #include "State.h"
 #include "KeyboardController.h"
-#include "Motor.h"
 #include "InputController.h"
 
 #ifndef GARAGEDOORCONTROLLER_H_
