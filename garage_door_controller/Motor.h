@@ -15,7 +15,6 @@ public:
     void setMotorUp(bool setting);
     void setMotorDown(bool setting);
 	Motor();
-	virtual ~Motor();
 };
 
 #endif /* MOTOR_H_ */

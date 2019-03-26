@@ -27,8 +27,3 @@ KeyboardController::KeyboardController(InputController controller) {
     pthread_t keyboardThread;
     pthread_create(&keyboardThread, NULL, &keyboardListener, NULL);
 }
-
-KeyboardController::~KeyboardController() {
-	// TODO Auto-generated destructor stub
-}
-

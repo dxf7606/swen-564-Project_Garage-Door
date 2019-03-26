@@ -8,12 +8,7 @@
 #include "InputController.h"
 
 InputController::InputController() {
-	// TODO Auto-generated constructor stub
 
-}
-
-InputController::~InputController() {
-	// TODO Auto-generated destructor stub
 }
 
 void InputController::sendInput(char input) {

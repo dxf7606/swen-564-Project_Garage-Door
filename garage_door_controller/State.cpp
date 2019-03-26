@@ -162,7 +162,3 @@ State::State(Motor *m) {
     this->curState = ClosedState;
     this->lastState = ClosedState;
 }
-
-State::~State() {
-	// TODO Auto-generated destructor stub
-}

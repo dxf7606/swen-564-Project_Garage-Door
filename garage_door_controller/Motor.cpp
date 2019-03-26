@@ -65,10 +65,6 @@ Motor::Motor() {
     pthread_create(&mt, NULL, &motorThread, NULL);
 }
 
-Motor::~Motor() {
-	// TODO Auto-generated destructor stub
-}
-
 void Motor::setMotorUp(bool setting) {
     motorBuffer::motorUp = setting;
 }

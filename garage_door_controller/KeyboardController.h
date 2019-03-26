@@ -15,7 +15,6 @@ private:
     //void keyboardListener(void *arg);
 public:
 	KeyboardController(InputController controller);
-	virtual ~KeyboardController();
 };
 
 #endif /* KEYBOARDCONTROLLER_H_ */

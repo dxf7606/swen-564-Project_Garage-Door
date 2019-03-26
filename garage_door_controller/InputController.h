@@ -11,7 +11,6 @@
 class InputController {
 public:
 	InputController();
-	virtual ~InputController();
     void sendInput(char input);
 };
 

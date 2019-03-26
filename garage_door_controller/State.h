@@ -25,7 +25,6 @@ public:
 	void doorOpenInterrupt();
 	void doorClosedInterrupt();
 	State(Motor *m);
-	~State();
 private:
 	void buttonInterrupt_Closed();
 	void buttonInterrupt_Opening_Closing();
