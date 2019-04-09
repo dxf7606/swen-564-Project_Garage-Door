@@ -13,7 +13,7 @@ class Motor {
 public:
     void setMotorUp(bool setting);
     void setMotorDown(bool setting);
-	Motor();
+	Motor(bool useKeyboard);
 };
 
 #endif /* MOTOR_H_ */

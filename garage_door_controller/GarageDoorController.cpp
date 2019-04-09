@@ -13,6 +13,12 @@
 #include "inputBuffer.h"
 #include <unistd.h>
 
+#define D_I_O_PORT_LENGTH (1)
+#define A_D_BASE_ADDRESS 0x280
+#define D_I_O_CONTROL_REGISTER (A_D_BASE_ADDRESS + 0x0b)
+#define D_I_O_PORT_A (A_D_BASE_ADDRESS + 0x08)
+#define D_I_O_PORT_B (A_D_BASE_ADDRESS + 0x09)
+
 GarageDoorController *g;
 
 namespace inputBuffer {
@@ -58,9 +64,12 @@ GarageDoorController::GarageDoorController() {
     this->keyboardController = new KeyboardController(*c);
 }
 
-//int main() {
-//    g = new GarageDoorController();
-//    pthread_t doorControllerThread;
-//    pthread_create(&doorControllerThread, NULL, &garageDoorThread, NULL);
-//    pthread_join(doorControllerThread, 0);
-//}
+int main() {
+	handler_space::d_i_o_control_handle = mmap_device_io( D_I_O_PORT_LENGTH, D_I_O_CONTROL_REGISTER ) ;
+	handler_space::d_i_o_port_a_handle = mmap_device_io( D_I_O_PORT_LENGTH, D_I_O_PORT_A ) ;
+	handler_space::d_i_o_port_b_handle = mmap_device_io( D_I_O_PORT_LENGTH, D_I_O_PORT_B ) ;
+    g = new GarageDoorController();
+    pthread_t doorControllerThread;
+    pthread_create(&doorControllerThread, NULL, &garageDoorThread, NULL);
+    pthread_join(doorControllerThread, 0);
+}
