@@ -58,9 +58,9 @@ GarageDoorController::GarageDoorController() {
     this->keyboardController = new KeyboardController(*c);
 }
 
-int main() {
-    g = new GarageDoorController();
-    pthread_t doorControllerThread;
-    pthread_create(&doorControllerThread, NULL, &garageDoorThread, NULL);
-    pthread_join(doorControllerThread, 0);
-}
+//int main() {
+//    g = new GarageDoorController();
+//    pthread_t doorControllerThread;
+//    pthread_create(&doorControllerThread, NULL, &garageDoorThread, NULL);
+//    pthread_join(doorControllerThread, 0);
+//}
