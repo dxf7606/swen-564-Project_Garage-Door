@@ -36,6 +36,7 @@ private:
     Concrete_State lastState;
     bool infraredActive;
     bool overcurrentActive;
+    bool useKeyboard;
 };
 
 #endif /* STATE_H_ */

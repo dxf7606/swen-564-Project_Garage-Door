@@ -88,16 +88,16 @@ int GetRootAccess()
 	return status ;
 }
 
-int main(int argc, char *argv[])
-{
-	if ( ! GetRootAccess() )
-	{
-		SetupDIO() ;
-		TestPorts();
-	}
-	else
-		printf( "\nFailure getting root access for I/O register mapping\n") ;
-
-	return EXIT_SUCCESS;
-}
+//int main(int argc, char *argv[])
+//{
+//	if ( ! GetRootAccess() )
+//	{
+//		SetupDIO() ;
+//		TestPorts();
+//	}
+//	else
+//		printf( "\nFailure getting root access for I/O register mapping\n") ;
+//
+//	return EXIT_SUCCESS;
+//}
 
